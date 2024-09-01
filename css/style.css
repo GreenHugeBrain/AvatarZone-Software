@@ -76,12 +76,7 @@ body {
 .btn-close {
     filter: invert(1) grayscale(100%) brightness(200%);
 }
-#steamListings {
-    background-color: rgba(255,255,255,0.05);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
+
 h2, h4 {
     color: var(--accent-color);
     margin-bottom: 20px;
@@ -96,4 +91,198 @@ h2, h4 {
 .custom-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+#steamListings {
+    background-color: rgba(108, 92, 231, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 12px rgba(108, 92, 231, 0.2);
+}
+/* Listing Container Styles */
+#steamListings {
+    background-color: rgba(108, 92, 231, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual Listing Styles */
+.listing {
+    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(108, 92, 231, 0.07) 100%);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(108, 92, 231, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.listing:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(108, 92, 231, 0.2);
+}
+
+.listing::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.listing:hover::before {
+    opacity: 1;
+}
+
+/* Listing Content Layout */
+.listing .row {
+    align-items: center;
+}
+
+/* Image Styles */
+.listing .col-md-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listing-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.listing:hover .listing-image {
+    transform: scale(1.05);
+}
+
+/* Text Content Styles */
+.listing .card-body {
+    padding: 0 20px;
+}
+
+.listing .card-title {
+    color: var(--accent-color);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.listing .card-text {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+/* Specific Data Point Styles */
+.listing .quality,
+.listing .float,
+.listing .price {
+    font-weight: 600;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.listing .quality {
+    background-color: rgba(162, 155, 254, 0.2);
+    color: var(--secondary-color);
+}
+
+.listing .float {
+    background-color: rgba(108, 92, 231, 0.2);
+    color: var(--primary-color);
+}
+
+.listing .price {
+    background-color: rgba(255, 137, 6, 0.2);
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+/* Metadata Styles */
+.listing .text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Profile Link Styles */
+.listing .Profile {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 24px;
+    position: absolute;
+}
+
+.listing .Profile:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.range-container {
+    position: relative;
+    height: 40px;
+}
+
+.form-range {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    appearance: none;
+    background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+    pointer-events: auto;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.form-range::-moz-range-thumb {
+    pointer-events: auto;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#minPriceRange {
+    z-index: 1;
+}
+
+#maxPriceRange {
+    z-index: 2;
+}
+
+#minPriceLabel, #maxPriceLabel {
+    color: var(--text-color);
+}
+
+.filter-switch input[type="checkbox"]:disabled + span {
+    color: gray; /* ან ნებისმიერი სხვა ფერი, რომ გადმოსცეს გამორთული მდგომარეობა */
+    cursor: not-allowed; /* მიუთითებს, რომ ფილტრებზე არ შეიძლება დაკლიკება */
 }

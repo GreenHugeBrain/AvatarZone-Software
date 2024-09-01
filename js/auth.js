@@ -19,13 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(response => response.json())
             .then(res => {
-                console.log(res);
-
                 if (res.token && res.refreshToken) {
-                    // Save tokens to localStorage
                     localStorage.setItem("token", res.token);
                     localStorage.setItem("refreshToken", res.refreshToken);
-                    window.location.href = 'index.html'
+                    fetchUserData(res.token, emailLogin.value);
                 } else {
                     console.error("Tokens not found in the response");
                 }
@@ -34,6 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
+    const fetchUserData = (token, email) => {
+        fetch('https://avatarzone-api.onrender.com/user-loader', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        
+        .then(response => response.json())
+        .then(userData => {
+            localStorage.setItem("userData", JSON.stringify(userData));
+            window.location.href = 'index.html';
+        })
+        .catch(err => console.log(err));
+    };
+
     loginUser();
 });
-    

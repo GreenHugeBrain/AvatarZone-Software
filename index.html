@@ -19,10 +19,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="discordLink">Discord</a>
+                        <a class="nav-link" href="https://discord.gg/7MfghXFZ" target="_blank" id="discordLink">Discord</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="websiteLink">Website</a>
+                        <a class="nav-link" href="https://greenhugebrain.github.io/AvatarZone-Client/" target="_blank" id="websiteLink">Website</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="logout">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link btn btn-outline-primary" href="login.html" id="loginBtn">Login</a>
@@ -39,31 +42,32 @@
                     <h4>Filters</h4>
                     <div class="mb-3">
                         <label class="form-check form-switch filter-switch">
-                            <input class="form-check-input" type="checkbox" role="switch">
+                            <input class="form-check-input" type="checkbox" data-filter="basic">
                             <span class="ms-2">Basic</span>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-check form-switch filter-switch">
-                            <input class="form-check-input" type="checkbox" role="switch">
+                            <input class="form-check-input" type="checkbox" data-filter="standart">
                             <span class="ms-2">Standart</span>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-check form-switch filter-switch">
-                            <input class="form-check-input" type="checkbox" role="switch">
+                            <input class="form-check-input" type="checkbox" data-filter="premium">
                             <span class="ms-2">Premium</span>
                         </label>
                     </div>
                     <div class="mb-3">
                         <label class="form-check form-switch filter-switch">
-                            <input class="form-check-input" type="checkbox" role="switch">
+                            <input class="form-check-input" type="checkbox" data-filter="pro">
                             <span class="ms-2">Pro</span>
                         </label>
                     </div>
+                    
                     <button class="btn btn-primary mt-3 w-100" id="listFiltersBtn">List Filters</button>
                     <button class="btn btn-primary mt-3 w-100" id="FetchBtn">Fetch Listing</button>
-                </div>
+                </div>            
             </div>
             <div class="col-md-9">
                 <h2>Steam Listings</h2>
@@ -78,7 +82,48 @@
     <aside class="aside-container" id="filtersAside">
         <h4>Additional Filters</h4>
         <button class="btn btn-close float-end" id="closeAsideBtn"></button>
-        <!-- Additional filters will be added here -->
+        
+        <div class="mb-3">
+            <label for="typeFilter" class="form-label">Type</label>
+            <select class="form-select" id="typeFilter">
+                <option value="">All</option>
+                <option value="skin">Skin</option>
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label for="priceRange" class="form-label">Price Range ($)</label>
+            <div class="range-container">
+                <input type="range" class="form-range" id="minPriceRange" min="0" max="1000" step="10">
+                <input type="range" class="form-range" id="maxPriceRange" min="0" max="1000" step="10">
+            </div>
+            <div class="d-flex justify-content-between">
+                <span id="minPriceLabel">$0</span>
+                <span id="maxPriceLabel">$1000</span>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="minFloat" class="form-label">Min Float</label>
+            <input type="number" class="form-control" id="minFloat" min="0" max="1" step="0.01">
+        </div>
+        
+        <div class="mb-3">
+            <label for="maxFloat" class="form-label">Max Float</label>
+            <input type="number" class="form-control" id="maxFloat" min="0" max="1" step="0.01">
+        </div>
+        
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate">
+        </div>
+        
+        <div class="mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="endDate">
+        </div>
+        
+        <button class="btn btn-primary w-100" id="applyFiltersBtn">Apply Filters</button>
     </aside>
 
     <script src="js/app.js"></script>
