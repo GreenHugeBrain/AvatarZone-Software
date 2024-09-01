@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const premiumFilter = document.querySelector('input[type="checkbox"][data-filter="premium"]');
     const proFilter = document.querySelector('input[type="checkbox"][data-filter="pro"]');
     const fetchBtn = document.getElementById('FetchBtn');
-    const logout = document.getElementById('logout');
+    const logout = document.getElementById('logoutBtn');
 
     // გადართეთ და მიაწვდით ფილტრები
     basicFilter.checked = userData.basic;
@@ -32,21 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // მომხმარებლის სახელი მიაწვდით Login ღილაკზე
     const loginBtn = document.getElementById('loginBtn');
     loginBtn.textContent = userData.username;
-    loginBtn.href = "#"; // Optional: შეცვალეთ href საჭიროების მიხედვით
+    loginBtn.href = "login.html"; // Optional: შეცვალეთ href საჭიროების მიხედვით
 
-    // დაკლიკებების რაოდენობა და 10 წამით გამორთვის ფუნქცია
+    // დაკლიკებების რაოდენობა და 1 საათით გამორთვის ფუნქცია
     let clickCount = 0;
     const handleClick = (maxClicks) => {
         clickCount++;
         if (clickCount >= maxClicks) {
             fetchBtn.disabled = true;
-            localStorage.setItem('fetchBtnDisabledUntil', Date.now() + 10000); // 10 წამი მილიწამებში
+            localStorage.setItem('fetchBtnDisabledUntil', Date.now() + 3600000); // 1 საათი მილიწამებში
 
             setTimeout(() => {
                 fetchBtn.disabled = false;
                 clickCount = 0;
                 localStorage.removeItem('fetchBtnDisabledUntil');
-            }, 10000); // 10 წამი მილიწამებში
+            }, 3600000); // 1 საათი მილიწამებში
         }
     };
 
@@ -74,8 +74,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }, disabledUntil - Date.now());
     }
 
-    logout.addEventListener('click', () => {
-        localStorage.removeItem('userData');
-        window.location.href = "index.html"; // გადაამისამართეთ მომხმარებელი საწყის გვერდზე
-    });
 });

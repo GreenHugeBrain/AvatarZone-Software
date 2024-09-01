@@ -89,7 +89,7 @@ function displayListings(listings) {
                 <div class="col-md-10">
                     <div class="card-body">
                         <h5 class="card-title">${listing.item.item_name}
-                            <a class="Profile" href="https://steamcommunity.com/profiles/${listing.seller.steam_id}/">Seller Profile</a>
+                            <a class="Profile" href="https://steamcommunity.com/profiles/${listing.seller.steam_id}/" target="_blank">Seller Profile</a>
                         </h5>
                         <p class="card-text">${listing.item.description}</p>
                         <p class="card-text">

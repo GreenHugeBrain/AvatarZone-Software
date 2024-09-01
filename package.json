@@ -1,0 +1,44 @@
+{
+  "name": "avatar-zone-software",
+  "version": "1.0.0",
+  "description": "AvatarZone Software",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "Khvtisavar Zedelashvili",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.avatarzone.software",
+    "productName": "AvatarZone Software",
+    "files": [
+      "js/**/*",
+      "css/**/*",
+      "images/**/*",
+      "index.html",
+      "login.html",
+      "main.js",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "images/Logo.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "images/Logo.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "images/Logo.png"
+    }
+  }
+}
+    
